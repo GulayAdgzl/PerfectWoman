@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "159028133407",
+    "firebase_url": "https://woman-ceaf1-default-rtdb.firebaseio.com",
+    "project_id": "woman-ceaf1",
+    "storage_bucket": "woman-ceaf1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159028133407:android:175b23bfa1b6349a519f2a",
+        "android_client_info": {
+          "package_name": "com.glyadgzl.womanwallpaper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwz8qH7KDIRMaY3ZAllG8jQlTd-20-ESU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
