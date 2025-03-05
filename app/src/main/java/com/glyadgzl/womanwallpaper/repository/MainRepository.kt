@@ -9,19 +9,18 @@ import com.google.firebase.database.ValueEventListener
 class MainRepository{
     private val firebaseDatabase= FirebaseDatabase.getInstance()
 
-    fun loadUpcoming(): LiveData<MutableList<WomanItem>> {
-        val listData= MutableLiveData<MutableList<WomanItem>>()
+    fun loadUpcoming(): LiveData<MutableList<WomanItemModel>> {
+        val listData= MutableLiveData<MutableList<WomanItemModel>>()
       val ref=  firebaseDatabase.getReference("Upcoming")
         ref.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                val lists=mutableListOf<WomanItem>()
+                val lists=mutableListOf<WomanItemModel>()
                 for (i in snapshot.children){
-                    val item=i.getValue(WomanItem::class.java)
+                    val item=i.getValue(WomanItemModel::class.java)
                     item?.let{lists.add(it)}
                 }
                 listData.value=lists
             }
-
             override fun onCancelled(error: DatabaseError) {
                 Log.e("MainRepository",error.message)
             }
@@ -30,14 +29,14 @@ class MainRepository{
         return listData
     }
 
-    fun loadItems():LiveData<MutableList<WomanItem>>{
-        val listData=MutableLiveData<MutableList<WomanItem>>()
+    fun loadItems():LiveData<MutableList<WomanItemModel>>{
+        val listData=MutableLiveData<MutableList<WomanItemModel>>()
       val ref=  firebaseDatabase.getReference("Items")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val lists=mutableListOf<WomanItem>()
+                val lists=mutableListOf<WomanItemModel>()
                 for (i in snapshot.children){
-                    val item=i.getValue(WomanItem::class.java)
+                    val item=i.getValue(WomanItemModel::class.java)
                     item?.let{lists.add(it)}
                 }
                 listData.value=lists
