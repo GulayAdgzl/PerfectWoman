@@ -1,6 +1,6 @@
 # 8 Mart Dünya Kadınlar Günü Uygulaması
 
-![En İyi Mobil Oyunlar Youtube Kapağı](https://github.com/user-attachments/assets/64e79934-6413-410f-a991-8496d81dbd9b)
+![En İyi Mobil Oyunlar Youtube Kapağı (1)](https://github.com/user-attachments/assets/ac9e985f-05d4-4cb8-81ad-5adcf2166434)
 
 Bu mobil uygulama, Dünya Kadınlar Günü kapsamında Marie Claire dergisinin "Dünyayı Değiştiren Tarihteki 65 Ünlü Kadın" listesini tanıtmak amacıyla geliştirilmiştir.
 
