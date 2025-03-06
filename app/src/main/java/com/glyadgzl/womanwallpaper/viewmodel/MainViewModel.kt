@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModel
 class MainViewModel : ViewModel() {
     private val repository = MainRepository()
     
-    fun loadUpcoming(): LiveData<MutableList<FilmItemModel>> {
+    fun loadUpcoming(): LiveData<MutableList<WomanItemModel>> {
         return repository.loadUpcoming()
     }
 
-    fun loadItems(): LiveData<MutableList<FilmItemModel>> {
+    fun loadItems(): LiveData<MutableList<WomanItemModel>> {
         return repository.loadItems()
     }
 }

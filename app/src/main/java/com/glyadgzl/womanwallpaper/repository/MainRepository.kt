@@ -11,48 +11,48 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flowOn
 
-class MainRepository {
-    private val firebaseDatabase = FirebaseDatabase.getInstance()
 
-    fun loadUpcoming(): Flow<List<WomanItemModel>> = callbackFlow {
-        val ref = firebaseDatabase.getReference("Upcoming")
-        val listener = ref.addValueEventListener(object : ValueEventListener {
+class MainRepository{
+    private val firebaseDatabase= FirebaseDatabase.getInstance()
+
+    fun loadUpcoming(): LiveData<MutableList<WomanItemModel>> {
+        val listData= MutableLiveData<MutableList<WomanItemModel>>()
+        val ref=  firebaseDatabase.getReference("Upcoming")
+        ref.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                val lists = mutableListOf<WomanItemModel>()
-                for (i in snapshot.children) {
-                    val item = i.getValue(WomanItemModel::class.java)
-                    item?.let { lists.add(it) }
+                val lists=mutableListOf<WomanItemModel>()
+                for (i in snapshot.children){
+                    val item=i.getValue(WomanItemModel::class.java)
+                    item?.let{lists.add(it)}
                 }
-                trySend(lists)
+                listData.value=lists
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("MainRepository", error.message)
-                close(error.toException())
+                Log.e("MainRepository",error.message)
             }
+
         })
+        return listData
+    }
 
-        awaitClose {
-            ref.removeEventListener(listener)
-        }
-    }.flowOn(Dispatchers.IO)
-
-    fun loadItems(): LiveData<MutableList<WomanItemModel>> {
-        val listData = MutableLiveData<MutableList<WomanItemModel>>()
-        val ref = firebaseDatabase.getReference("Items")
+    fun loadItems():LiveData<MutableList<WomanItemModel>>{
+        val listData=MutableLiveData<MutableList<WomanItemModel>>()
+        val ref=  firebaseDatabase.getReference("Items")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val lists = mutableListOf<WomanItemModel>()
-                for (i in snapshot.children) {
-                    val item = i.getValue(WomanItemModel::class.java)
-                    item?.let { lists.add(it) }
+                val lists=mutableListOf<WomanItemModel>()
+                for (i in snapshot.children){
+                    val item=i.getValue(WomanItemModel::class.java)
+                    item?.let{lists.add(it)}
                 }
-                listData.value = lists
+                listData.value=lists
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("MainRepository", error.message)
+                Log.e("MainRepository",error.message)
             }
+
         })
         return listData
     }
